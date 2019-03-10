@@ -30,3 +30,13 @@ $ fig --help
     $ fig hackerman
 ```
 
+## Weechat
+To access fig in weechat, add the following to `$HOME/.weechat/alias.conf`
+```
+fig = "/exec -norc fig"
+```
+Then just use:
+```
+/fig list
+/fig get hackerman
+```
