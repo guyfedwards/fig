@@ -12,9 +12,11 @@ const cli = meow(`
     copy [name]      Copy gif url to clipboard
     list [name]      List all gif names
     open [name]      Open gif in browser
+    get [name]       Get gif url
 
   Options
     -f, --force Override existing entry [Default: false]
+    -s, --silent Suppress output messages [Default: false]
 
   Examples
     $ fig add hackerman https://media.giphy.com/media/QbumCX9HFFDQA/giphy.gif
@@ -22,8 +24,12 @@ const cli = meow(`
 `, {
   flags: {
     force: {
+      alias: 'f',
       type: 'boolean',
-      alias: 'f'
+    },
+    silent: {
+      alias: 's',
+      type: 'boolean',
     }
   }
 })

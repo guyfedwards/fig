@@ -1,7 +1,7 @@
 const clipboardy = require('clipboardy')
 const get = require('./get')
 
-const open = async ([ name ]) => {
+const open = async ([ name ], flags) => {
   if (!name) {
     throw `Usage: \n$ fig copy <name>`
   }
@@ -9,7 +9,9 @@ const open = async ([ name ]) => {
   const url = await get([name])
   clipboardy.writeSync(url)
 
-  return `Copied ${name} to clipboard!`
+  if (!flags.silent) {
+    return `Copied ${name} to clipboard!`
+  }
 }
 
 module.exports = open

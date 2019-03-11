@@ -7,10 +7,14 @@ const add = ([name, url], flags) => {
 
   return db.add(name, url, flags.force)
     .then(() => {
-      return `${name} added`
+      if (!flags.silent) {
+        return `${name} added`
+      }
     })
     .catch(err => {
-      return err
+      if (!flags.silent) {
+        return err
+      }
     })
 }
 
