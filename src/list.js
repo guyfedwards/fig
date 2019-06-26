@@ -1,9 +1,10 @@
+const columns = require('cli-columns')
 const db = require('./db')
 
 const list = ([], flags) => {
   return db.getAll()
     .then(all => {
-      return Object.keys(all).sort().join('\n')
+      return columns(Object.keys(all).sort(), { width: 60 })
     })
     .catch(err => {
       if (!flags.silent) {
