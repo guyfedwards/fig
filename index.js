@@ -8,11 +8,11 @@ const cli = meow(`
     If no command is provided, defaults to copy
 
   Commands
-    add [name] [url] Add new entry
-    copy [name]      Copy gif url to clipboard
-    list [name]      List all gif names
-    open [name]      Open gif in browser
-    get [name]       Get gif url
+    add     [name] [url] Add new entry
+    copy,cp    [name]       Copy gif url to clipboard
+    list,ls [name]       List all gif names
+    open    [name]       Open gif in browser
+    get     [name]       Get gif url
 
   Options
     -f, --force Override existing entry [Default: false]
@@ -34,16 +34,33 @@ const cli = meow(`
   }
 })
 
+const deAlias = (cmd) => {
+  const aliases = {
+    'cp': 'copy',
+    'ls': 'list'
+  }
+
+  const alias = aliases[cmd]
+
+  if (alias) {
+    return alias
+  }
+
+  return cmd
+}
+
 ;(async () => {
   if (cli.input.length < 1) {
     cli.showHelp()
   }
 
-  if (commands[cli.input[0]]) {
-    const [cmd, ...args] = cli.input
+  const cmd = commands[deAlias(cli.input[0])]
+
+  if (cmd) {
+    const [_, ...args] = cli.input
 
     try {
-      const msg = await commands[cmd](args, cli.flags)
+      const msg = await cmd(args, cli.flags)
       if (msg) {
         console.log(msg)
       }
