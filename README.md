@@ -1,34 +1,28 @@
 # Fig
 
-CLI for storing, opening and *copying* gifs.  
-Optionally uses cloudinary to store original `.gif`
+CLI for storing and retrieving gifs or really any string values.  
 
 ## Install
-```
-$ yarn global add fig
-```
+See [releases](https://github.com/guyfedwards/fig/releases)
 
 ## Usage
 ```sh
-Usage
-    $ fig [command] [options] [args...]
+Usage of fig:
+$ fig [command] [options] [args...]
 
-    If no command is provided, defaults to copy
+If no command is provided, defaults to copy
+Commands
+  add     [name] [url] Add new entry
+  list,ls [name]       List all gif names
 
-  Commands
-    add     [name] [url] Add new entry
-    copy,cp    [name]       Copy gif url to clipboard
-    list,ls [name]       List all gif names
-    open    [name]       Open gif in browser
-    get     [name]       Get gif url
+Options
+  -f, --force Override existing entry [Default: false]
+  -s, --silent Suppress output messages [Default: false]
+	-c, --config Custom config location [Default: OS User Config Dir]
 
-  Options
-    -f, --force Override existing entry [Default: false]
-    -s, --silent Suppress output messages [Default: false]
-
-  Examples
-    $ fig add hackerman https://media.giphy.com/media/QbumCX9HFFDQA/giphy.gif
-    $ fig open hackerman
+Examples
+  $ fig add hackerman https://media.giphy.com/media/QbumCX9HFFDQA/giphy.gif
+  $ fig get hackerman
 ```
 
 ## Weechat
